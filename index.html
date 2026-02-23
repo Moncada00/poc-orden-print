@@ -21,12 +21,9 @@
       document.getElementById("descripcion").textContent =
         descripcion || "";
 
-      if (!qr) {
-        document.getElementById("q").alt = "No se recibió QR_Image desde AppSheet";
-      } else {
-        document.getElementById("q").src = qr;
-      }
-    };
+      const qr = p.get("qr") || "";
+      document.getElementById("q").src = qr;
+          };
   </script>
 
   <style>
