@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script>
-    // Obtener parámetros de la URL
     function getParam(name) {
       const url = new URL(window.location.href);
       return url.searchParams.get(name) || "";
@@ -15,60 +14,39 @@
     window.onload = function () {
       const orden = getParam("orden");
       const descripcion = getParam("desc");
+      const qrUrl = getParam("qr");
 
       // Mostrar datos
       document.getElementById("orden").textContent = orden || "—";
-      document.getElementById("descripcion").textContent =
-        descripcion || "";
+      document.getElementById("descripcion").textContent = descripcion || "";
 
-      const qr = p.get("qr") || "";
-      document.getElementById("q").src = qr;
-          };
+      // Mostrar QR
+      const img = document.getElementById("qr");
+      if (qrUrl) {
+        img.src = qrUrl;
+      } else {
+        img.alt = "No se recibió el parámetro qr";
+      }
+    };
   </script>
 
   <style>
-    body {
-      text-align: center;
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 30px;
-    }
-
-    h2 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-
-    #descripcion {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-
-    button {
-      font-size: 18px;
-      padding: 12px 18px;
-      margin-top: 16px;
-      cursor: pointer;
-    }
-
-    @media print {
-      button {
-        display: none;
-      }
-    }
+    body { text-align: center; font-family: Arial, Helvetica, sans-serif; margin: 30px; }
+    h2 { font-size: 28px; margin-bottom: 10px; }
+    #descripcion { font-size: 18px; margin-bottom: 20px; white-space: pre-wrap; word-break: break-word; }
+    button { font-size: 18px; padding: 12px 18px; margin-top: 16px; cursor: pointer; }
+    @media print { button { display: none; } }
   </style>
 </head>
 
 <body>
   <h2>ORDEN <span id="orden"></span></h2>
-
   <p id="descripcion"></p>
 
   <img id="qr" style="width:260px;height:260px;" />
 
   <br><br>
 
-  <button onclick="window.print()">
-    Imprimir
-  </button>
+  <button onclick="window.print()">Imprimir</button>
 </body>
 </html>
