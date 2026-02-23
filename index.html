@@ -10,15 +10,22 @@
       const url = new URL(window.location.href);
       return url.searchParams.get(name) || "";
     }
-
+    
     window.onload = function () {
       const orden = getParam("orden");
       const descripcion = getParam("desc");
+      const placa = getParam("placa");
       const qrUrl = getParam("qr");
-
-      // Mostrar datos
+    
       document.getElementById("orden").textContent = orden || "—";
       document.getElementById("descripcion").textContent = descripcion || "";
+      document.getElementById("placa").textContent = placa || "";
+
+  const img = document.getElementById("qr");
+  if (qrUrl) {
+    img.src = qrUrl;
+  }
+};
 
       // Mostrar QR
       const img = document.getElementById("qr");
