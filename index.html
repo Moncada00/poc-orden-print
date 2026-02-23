@@ -21,13 +21,10 @@
       document.getElementById("descripcion").textContent =
         descripcion || "";
 
-      // Generar QR dinámico
-      if (orden) {
-        const qrUrl =
-          "https://api.qrserver.com/v1/create-qr-code/?size=260x260&data=" +
-          encodeURIComponent(orden);
-
-        document.getElementById("qr").src = qrUrl;
+      if (!qr) {
+        document.getElementById("q").alt = "No se recibió QR_Image desde AppSheet";
+      } else {
+        document.getElementById("q").src = qr;
       }
     };
   </script>
